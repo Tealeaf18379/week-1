@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+        }
+        th,td{
+            border: 1px solid #d0d0d0;
+            color: black;
+            padding: 10px;
+        }
+        th{
+            background-color: black;
+            font: bold;
+            color: #fff;
+        }
+    </style>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript">
+ 
+
+
+     $(document).ready(function table(){
+        $.ajax({
+            url:'QVL.json',
+            dataType:'json',
+            success:function(data){
+                
+                var html = '';
+                for(var i=0;i<data.length;i++){
+                    html = html+'<tr>';
+                    html = html+'<td>'+data[i].Brand+'</td>';
+                    html = html+'<td>'+data[i].Memo+'</td>';
+                    html = html+'<td>'+ data[i]["Request From"]+'</td>';
+                    html = html+'<td>'+data[i]["Vendor PartNumber"]+'</td>';
+                    html = html+'</tr>';
+            }
+            $('#tr').html(html);
+        },
+        
+});
+     })
+     
+
+    </script>
+</head>
+
+<body>
+    <table>
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Memo</th>
+            <th>Request From</th>
+            <th>Vendor PartNumber</th>
+        </tr>
+    </thead>
+    <tbody class="table" id="tr" style="text-overflow: ellipsis;">
+    </tbody>
+</table>
+</body>
+</html>
